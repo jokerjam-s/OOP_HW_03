@@ -22,7 +22,7 @@ public interface IAcademicStream {
      * получить количество групп в потоке
      * @return
      */
-    int getGroupCount();
+    int getCountGroups();
 
     /**
      * Получить группу по индексу

@@ -33,7 +33,7 @@ public class AcademicStream implements IAcademicStream, Iterable<IGroup> {
     }
 
     @Override
-    public int getGroupCount() {
+    public int getCountGroups() {
         return this.groups.size();
     }
 
