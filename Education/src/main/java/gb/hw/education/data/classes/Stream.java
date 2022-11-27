@@ -13,7 +13,6 @@ import java.util.List;
 public class AcademicStream implements IAcademicStream, Iterable<IGroup> {
     private List<IGroup> groups;
 
-
     public AcademicStream(List<IGroup> groups) {
         this.groups = groups;
     }
@@ -60,6 +59,13 @@ public class AcademicStream implements IAcademicStream, Iterable<IGroup> {
             @Override
             public IGroup next() {
                 return groups.get(index++);
+            }
+
+            @Override
+            public void remove() {
+                if(index < groups.size()){
+                    groups.remove(index);
+                }
             }
         };
         return groupIterator;
