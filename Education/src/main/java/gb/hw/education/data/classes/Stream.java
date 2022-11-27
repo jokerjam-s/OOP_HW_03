@@ -1,7 +1,8 @@
 package gb.hw.education.data.classes;
 
-import gb.hw.education.data.interfaces.IAcademicStream;
+import gb.hw.education.data.interfaces.IStream;
 import gb.hw.education.data.interfaces.IGroup;
+import gb.hw.education.services.classes.StreamComparator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,15 +11,27 @@ import java.util.List;
 /**
  * Класс учебный поток
  */
-public class AcademicStream implements IAcademicStream, Iterable<IGroup> {
+public class Stream implements IStream, Iterable<IGroup> {
+    private String name;
     private List<IGroup> groups;
 
-    public AcademicStream(List<IGroup> groups) {
+    public Stream(String name, List<IGroup> groups) {
+        this.name = name;
         this.groups = groups;
     }
 
-    public AcademicStream(){
-        this(new ArrayList<IGroup>());
+    public Stream(String name) {
+        this(name, new ArrayList<IGroup>());
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -44,6 +57,11 @@ public class AcademicStream implements IAcademicStream, Iterable<IGroup> {
         else {
             return this.groups.get(index);
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Поток [%s, групп - %d]", this.name, this.getCountGroups());
     }
 
     @Override

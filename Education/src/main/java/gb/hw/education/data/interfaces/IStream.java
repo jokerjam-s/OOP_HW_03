@@ -1,11 +1,14 @@
 package gb.hw.education.data.interfaces;
 
+import gb.hw.education.data.classes.Stream;
+import gb.hw.education.services.classes.StreamComparator;
+
 import java.util.List;
 
 /**
  * Интерфейс академического потока
  */
-public interface IAcademicStream {
+public interface IStream {
     /**
      * Получить список групп
      * @return
@@ -31,4 +34,6 @@ public interface IAcademicStream {
      */
     IGroup getGroup(int index);
 
+    void setName(String name);
+    String getName();
 }

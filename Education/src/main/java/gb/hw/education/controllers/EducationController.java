@@ -4,15 +4,18 @@ import gb.hw.education.data.classes.EducationGroup;
 import gb.hw.education.data.classes.Stream;
 import gb.hw.education.data.classes.Student;
 import gb.hw.education.data.classes.Teacher;
+import gb.hw.education.data.interfaces.IGroup;
 import gb.hw.education.data.interfaces.IStream;
 import gb.hw.education.services.classes.EducationGroupService;
 import gb.hw.education.services.classes.StreamService;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
-public class GroupController {
+public class EducationController {
     private static final StreamService streamService = new StreamService();
     private static final EducationGroupService groupService = new EducationGroupService();
     // Номер последней созданной группы
@@ -26,8 +29,8 @@ public class GroupController {
      * @param maxStudentCount   - максимальное кол-во студентов в группе
      * @return                  - новый поток
      */
-    public static IStream newStream(String name,  int countGroups, int minStudentCount, int maxStudentCount){
-        IStream stream = new Stream(name);
+    public static Stream newStream(String name,  int countGroups, int minStudentCount, int maxStudentCount){
+        Stream stream = new Stream(name);
         Random random = new Random();
 
         for (int i = 0; i < countGroups; i++) {
@@ -36,6 +39,20 @@ public class GroupController {
 
         return stream;
     }
+
+
+    public static void showGroupList(Stream stream){
+        Logger logger = Logger.getAnonymousLogger();
+
+        for (var g : stream) {
+            logger.info(g.toString());
+        }
+    }
+
+    public static void sortListStream(List<IStream> list){
+        streamService.sortByGroupCount(list);
+    }
+
 
     /**
      * Генератор новой группы
